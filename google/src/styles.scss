@@ -1,0 +1,163 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+*,body,html,ul{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nz-table span{
+    font-size: 12px;
+}
+.ng-head{
+    background-color: #fff;
+    position: relative;
+    box-shadow: 0 5px 5px #ddd; 
+    padding: 0 15px;
+    margin-bottom: 5px;
+    height: 55px;
+    
+    .rg{
+        display: flex;
+        align-items: center;
+    }
+}
+.ng-title{
+    font-size: 20px;
+    font-weight: 500;
+    align-self: center;
+}
+.icon-text{
+    i{
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    display: inline-block;
+    cursor: pointer;
+    padding:5px 15px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+.icon-text:hover{
+    color: #000;
+}
+.icon-text:active{
+        background-color: #eee;
+}
+.ng-filter{
+    background-color: #fff;
+    padding: 10px 15px;
+    // box-shadow: 0 -10px 10px #ddd; 
+    
+    .lf{
+        >.ant-btn-circle{
+            margin-right: 15px;
+        }
+        >i{
+            font-size: 20px;
+            color: #1890ff;
+        }
+        width: 70%;
+        
+    }
+    .rg{
+        display: flex;
+        align-items: center;
+    }
+    .ant-select,.ant-input,.example-input,button{
+        margin-left: 10px;
+        width: 200px;
+        display: inline-block;
+    }
+}
+.click-icon{
+    display: inline-block;
+   padding: 10px 10px;
+   border-radius: 50%;
+}
+.click-icon:hover{
+    background-color: #9AA0A6;
+}
+
+.ant-layout-sider{
+    background-color: #3C4043;
+}
+
+.ads-card{
+    background-color: #fff;
+    box-shadow: 0 5px 5px #ddd;
+}
+.ng-margin{
+    margin: 16px 0;
+}
+.ng-padding{
+    padding: 16px;
+}
+.ng-bottom{
+    margin-bottom: 16px;
+}
+.ant-layout-content{
+    .rg{
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+
+
+.ads-null{
+    padding-top: 48px;
+    text-align: center;
+    i{
+        background-color: #ddd;
+        border-radius: 50%;
+        color: orange;
+        font-size: 50px;
+        padding: 20px;
+    }
+    .title{
+        font-weight: 500;
+        font-size: 24px;
+        margin: 24px;
+    }
+    .text{
+        font-size: 20px;
+        font-weight: 400;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+    .url{
+        font-size: 15px;
+        padding-bottom: 24px;
+    }
+}
+
+.button-ul{
+    display: inline-block;
+    button{
+        width: auto;
+        margin: 2px;
+    }
+}
+.iphone-web{
+    color: #1E8E3E;
+    font-size: 12px;
+}
+.iphone-web>span{
+    display: inline-block;
+    border: 1px solid #1E8E3E;
+    padding: 0 5px;
+}
+
+
+.ng-w10{
+    width: 1000px;
+    margin: 0 auto;
+}

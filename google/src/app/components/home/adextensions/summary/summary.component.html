@@ -1,0 +1,59 @@
+<div class="ng-head flex">
+    <span class="ng-title">附加信息</span>
+    <div class="rg">
+           <nz-tabset>
+            <nz-tab *ngFor="let tab of tabs" [nzTitle]="titleTemplate">
+              <ng-template #titleTemplate>
+                <i nz-icon [nzType]="tab.icon" nzTheme="fill"></i>
+                {{ tab.name }}
+              </ng-template>
+            </nz-tab>
+          </nz-tabset>
+            <nz-range-picker [(ngModel)]="date"></nz-range-picker>
+    </div>
+</div>
+<div class="ng-w10">
+        <div class="flex ng-margin">
+            <div class="lf">
+                <button  nz-button nzType="primary" nzSize="large" nzShape="circle" nz-dropdown [nzDropdownMenu]="menu"><i nz-icon nzType="plus" nzTheme="outline"></i></button>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li *ngFor="let item of addList" nz-menu-item >{{item}}  </li>
+                    </ul>
+                </nz-dropdown-menu>    
+            </div>
+            <div class="flex"> 
+                <nz-switch [(ngModel)]="switch"></nz-switch>
+                <span style="margin-left: 5px;">显示预览</span>
+                <span class="icon-text">
+                    <i nz-icon nzType="message" nzTheme="fill"></i>
+                    <div>反馈</div>
+                </span>
+            </div>
+        </div>
+       <div class="ads-card" *ngFor="let item of list">
+           <div class="title"> 
+               <a href=""> 
+                   <span class="ng-title">附加链接 </span>  
+                   <i nz-icon nzType="right" nzTheme="outline"></i>
+               </a> 
+            </div>
+            <div class="content">
+                 <div class="lf">
+                     <div class="test">预览</div>
+                     <div class="card">
+                            <div class="url"> <strong>广告</strong> {{item.url}}</div>
+                            <div class="title"> 标题1 | 标题2</div>
+                            <div class="text">{{item.content}}</div>
+                     </div>
+                     <div class="test">{{item.test}}</div>
+                 </div>
+                 <div class="rg">
+                        <div class="text">{{item.text}}
+                            <a href="">了解详情</a>                         
+                        </div>
+                        <div class="button">创建</div>
+                 </div>
+            </div>
+       </div>
+</div>

@@ -1,0 +1,49 @@
+
+
+<nz-layout>
+    <nz-sider [style]="{height:clientHeight+'px'}">
+  
+        <ul class="aside-ul">
+            
+            <li>
+                <i nz-icon nzType="appstore" nzTheme="outline"></i>
+                <span>所有广告系列</span>
+            </li>
+            <li>
+                <i nz-icon nzType="search" nzTheme="outline"></i>
+                <span>搜索广告系列</span>
+            </li>
+            <li>
+                <i nz-icon nzType="share-alt" nzTheme="outline"></i>
+                <span>智能广告系列</span>
+            </li>
+        </ul>
+        <div class="aside-title">
+            <span>已启用</span>
+            <i nz-icon class="click-icon" nzType="swap" nzTheme="outline"></i>
+        </div>
+        <ul class="aside-ul">
+            
+            <li *ngFor="let item of aside">
+                <i class="success" nz-icon [nzType]="item.icon" nzTheme="outline"></i>
+                <span>{{item.title}}</span>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-content >
+            <ul nz-menu nzMode="inline" [style]="{height:clientHeight+'px'}">
+                <label *ngFor="let item of menu" >
+                    <li *ngIf="item.children" [nz-submenu]="false"   [nzTitle]="item.title" [nzIcon]="item.icon?item.icon:''"  nzOpen>
+                        <ul>
+                            <a  *ngFor="let v of item.children" nz-menu-item  [routerLink]="[ v.path ]" routerLinkActive="ant-menu-item-selected" >{{v.title}}</a> 
+                        </ul>
+                    </li>
+                    <a *ngIf="!item.children" nz-menu-item  [routerLink]="[ item.path ]" routerLinkActive="ant-menu-item-selected" >{{item.title}}</a> 
+                    
+                </label>
+            </ul>
+            <div class="rg" [style]="{height:clientHeight+'px'}">
+                <router-outlet></router-outlet>
+            </div>
+    </nz-content>
+  </nz-layout>

@@ -1,0 +1,244 @@
+<div class="app-overview">
+    <div class="ng-head flex">
+        <span class="ng-title">概览</span>
+        <div class="rg">
+                <div class="icon-text"> 
+                    <i nz-icon nzType="retweet" nzTheme="outline"></i>
+                    <div class="">切换视图</div>
+                </div>
+                <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+        </div>
+    </div>
+    <div class="flex ng-filter">
+            <div class="lf">
+                <i nz-icon nzType="pushpin" nzTheme="fill"></i>
+                <nz-select [(ngModel)]="filter.name1" nzPlaceHolder="广告系列状态">
+                    <nz-option nzValue="1" nzLabel="所有"></nz-option>
+                    <nz-option nzValue="2" nzLabel="所有已启动的"></nz-option>
+                    <nz-option nzValue="3" nzLabel="所有未移除的"></nz-option>
+                </nz-select>
+                <nz-select [(ngModel)]="filter.name2" nzPlaceHolder="广告组状态">
+                    <nz-option nzValue="1" nzLabel="所有"></nz-option>
+                    <nz-option nzValue="2" nzLabel="所有已启动的"></nz-option>
+                    <nz-option nzValue="3" nzLabel="所有未移除的"></nz-option>
+                </nz-select>
+                <input [(ngModel)]="filter.name3" type="text" nz-input placeholder="input search text" />
+            </div>
+            <div class="rg"></div>
+    </div>
+    <div class="overview-content">
+            <div class="flex">
+                <button nz-button nzType="primary" nzSize="large" nzShape="round" >
+                    <i nz-icon nzType="plus" nzTheme="outline"></i>
+                    <span>新广告系列</span>
+                </button>
+                <div class="flex">
+                    <div class="icon-text">
+                        <i nz-icon nzType="download" nzTheme="outline"></i>
+                        <div>下载</div>
+                    </div>
+                    <div class="icon-text">
+                        <i nz-icon nzType="warning" nzTheme="outline"></i>
+                        <div>反馈</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ads-card ng-margin">
+                <!-- <ul class="tool-ul">
+                        <li *ngFor="let item of tree">
+                            <nz-tree-select
+                            
+                                [nzExpandedKeys]="expandKeys"
+                                [nzNodes]="nodes"
+                                nzShowSearch
+                                nzPlaceHolder="Please select"
+                                [(ngModel)]="item.value"
+                                (ngModelChange)="treeChange($event)"
+                            >
+                            </nz-tree-select>
+                            <div class="num">{{item.num}}</div>
+                        </li>
+                        
+                </ul> -->
+                <div echarts [options]="chartOption" class="chart"></div>
+            </div>
+            <ul class="gong-ul">
+                <li>
+                    <div class="title">
+                        <span>最近被拒登的广告</span>
+                         <i nz-dropdown [nzDropdownMenu]="menu" nz-icon nzType="more" class="click-icon" nzTheme="outline"></i>
+                          <nz-dropdown-menu #menu="nzDropdownMenu">
+                            <ul nz-menu>
+                              <li nz-menu-item nzDisabled>卡片选项</li>
+                              <li nz-menu-item>添加关键字</li>
+                              <li nz-menu-item>下载卡片数据</li>
+                              <li nz-menu-item>以图片格式（.png）下载</li>
+                              <li nz-menu-divider></li>
+                              <li nz-menu-item nzDisabled>请帮助我们改进“概览”页。这些信息对您是否有帮助？</li>
+                              <li nz-menu-item>是</li>
+                              <li nz-menu-item>否</li>
+                              <li nz-menu-item>提供文字反馈</li>
+                            </ul>
+                          </nz-dropdown-menu>
+                      
+                    </div>
+                    <div class="content"> 
+                            <div class="iphone">
+                                    <div class="iphone-contnet">
+                                            <a href="">这是一个火爆的网站 | sad | sadasd</a>
+                                            <div class="iphone-web">
+                                                <span>广告</span>
+                                                 www.bilili.con/aa/aaa
+                                            </div>
+                                            <div class="iphone-title">阿萨德噶啥时间段噶事好多个</div>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="paginator">
+                        <button nz-button nzType="primary">所有被拒广告系列<i nz-icon nzType="right"></i></button>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span>广告系列</span>
+                         <i nz-dropdown [nzDropdownMenu]="menu" nz-icon nzType="more" class="click-icon" nzTheme="outline"></i>
+                          <nz-dropdown-menu #menu="nzDropdownMenu">
+                            <ul nz-menu>
+                              <li nz-menu-item nzDisabled>卡片选项</li>
+                              <li nz-menu-item>添加关键字</li>
+                              <li nz-menu-item>下载卡片数据</li>
+                              <li nz-menu-item>以图片格式（.png）下载</li>
+                              <li nz-menu-divider></li>
+                              <li nz-menu-item nzDisabled>请帮助我们改进“概览”页。这些信息对您是否有帮助？</li>
+                              <li nz-menu-item>是</li>
+                              <li nz-menu-item>否</li>
+                              <li nz-menu-item>提供文字反馈</li>
+                            </ul>
+                          </nz-dropdown-menu>
+                      
+                    </div>
+                    <div class="content"> 
+                        <nz-table #basicTable [nzData]="listOfData">
+                            <thead>
+                              <tr>
+                                <th nzWidth="120px"></th>
+                                <th *ngFor="let column of listOfColumn"  [nzSortFn]="column.compare"  [sortOrder]="null" [nzFilterMultiple]="false" [nzFilters]="tabletool"	[nzSortPriority]="column.priority">{{ column.title }}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let data of basicTable.data">
+                                <td > <nz-badge  nzStatus="success" [nzText]="data.name1"></nz-badge> </td>
+                                <td>{{ data.name2 }}</td>
+                                <td>{{ data.name3 }}</td>
+                                <td>{{ data.name4}}</td>
+                              </tr>
+                            </tbody>
+                          </nz-table>
+                    </div>
+                    <div class="paginator">
+                        <button nz-button nzType="primary">所有广告系列<i nz-icon nzType="right"></i></button>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span>关键字</span>
+                        <span>
+                            <button nz-button nzType="primary"><i nz-icon nzType="plus-circle" nzTheme="fill"></i> 添加关键字</button>
+                            <i nz-dropdown [nzDropdownMenu]="menu" nz-icon nzType="more" class="click-icon" nzTheme="outline"></i>
+                            <nz-dropdown-menu #menu="nzDropdownMenu">
+                                <ul nz-menu>
+                                <li nz-menu-item nzDisabled>卡片选项</li>
+                                <li nz-menu-item>添加关键字</li>
+                                <li nz-menu-item>下载卡片数据</li>
+                                <li nz-menu-item>以图片格式（.png）下载</li>
+                                <li nz-menu-divider></li>
+                                <li nz-menu-item nzDisabled>请帮助我们改进“概览”页。这些信息对您是否有帮助？</li>
+                                <li nz-menu-item>是</li>
+                                <li nz-menu-item>否</li>
+                                <li nz-menu-item>提供文字反馈</li>
+                                </ul>
+                            </nz-dropdown-menu>
+                        </span>
+                    </div>
+                    <div class="content"> 
+                        <nz-table #basicTable [nzData]="listOfData" >
+                            <thead>
+                              <tr>
+                                <th nzWidth="120px"></th>
+                                <th *ngFor="let column of listOfColumn"  [nzSortFn]="column.compare"  [sortOrder]="null" [nzFilterMultiple]="false" [nzFilters]="tabletool"	[nzSortPriority]="column.priority">{{ column.title }}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let data of basicTable.data">
+                                <td > <nz-badge  nzStatus="success" [nzText]="data.name1"></nz-badge> </td>
+                                <td>{{ data.name2 }}</td>
+                                <td>{{ data.name3 }}</td>
+                                <td>{{ data.name4}}</td>
+                              </tr>
+                            </tbody>
+                          </nz-table>
+                    </div>
+                    <div class="paginator">
+                        <button nz-button nzType="primary">管理关键字<i nz-icon nzType="right"></i></button>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span>搜索广告</span>
+                         <i nz-dropdown [nzDropdownMenu]="menu" nz-icon nzType="more" class="click-icon" nzTheme="outline"></i>
+                          <nz-dropdown-menu #menu="nzDropdownMenu">
+                            <ul nz-menu>
+                              <li nz-menu-item nzDisabled>卡片选项</li>
+                              <li nz-menu-item>添加关键字</li>
+                              <li nz-menu-item>下载卡片数据</li>
+                              <li nz-menu-item>以图片格式（.png）下载</li>
+                              <li nz-menu-divider></li>
+                              <li nz-menu-item nzDisabled>请帮助我们改进“概览”页。这些信息对您是否有帮助？</li>
+                              <li nz-menu-item>是</li>
+                              <li nz-menu-item>否</li>
+                              <li nz-menu-item>提供文字反馈</li>
+                            </ul>
+                          </nz-dropdown-menu>
+                    </div>
+                    <div class="groups">
+                          <nz-badge nzStatus="success" >
+                            <a>分组1</a>
+                          </nz-badge>
+                          >
+                          <nz-badge  nzStatus="success">
+                            <a>广告2</a>
+                          </nz-badge>
+                    </div>
+                    <div class="content"> 
+                            <div class="iphone-contnet">
+                                    <a href="">这是一个火爆的网站 | sad | sadasd</a>
+                                    <div class="iphone-web">
+                                        <span>广告</span>
+                                            www.bilili.con/aa/aaa
+                                    </div>
+                                    <div class="iphone-title">阿萨德噶啥时间段噶事好多个</div>
+                            </div>
+                            <nz-table #basicTable2 [nzData]="listOfData2">
+                                <thead>
+                                  <tr>
+                                    <th >广告</th>
+                                    <th *ngFor="let column of listOfColumn"  [nzSortFn]="column.compare"  [sortOrder]="null" [nzFilterMultiple]="false" [nzFilters]="tabletool"	[nzSortPriority]="column.priority">{{ column.title }}</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let data of basicTable2.data">
+                                    <td > <nz-badge  nzStatus="success" [nzText]="data.name1"></nz-badge> </td>
+                                    <td>{{ data.name2 }}</td>
+                                    <td>{{ data.name3 }}</td>
+                                    <td>{{ data.name4}}</td>
+                                  </tr>
+                                </tbody>
+                            </nz-table>
+                    </div>
+                    <div class="paginator">
+                        <button nz-button nzType="primary">所有被拒广告系列<i nz-icon nzType="right"></i></button>
+                    </div>
+                </li>
+            </ul>
+    </div>
+</div>

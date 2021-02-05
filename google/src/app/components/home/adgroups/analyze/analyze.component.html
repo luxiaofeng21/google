@@ -1,0 +1,87 @@
+<div id="fulldiv">
+    <div class="ng-head flex">
+        <span class="ng-title">竞价分析</span>
+        <div class="rg">
+                <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+        </div>
+    </div>
+    <div class="flex ng-filter">
+        <div class="lf">
+            <button nz-button nzType="primary" nzBlock><i nz-icon nzType="pushpin" nzTheme="fill"></i> 添加过滤条件</button>
+        </div>
+        <div class="rg">
+            <nz-select [(ngModel)]="filter.name4" nzPlaceHolder="广告组">
+                <nz-option nzValue="1" nzLabel="搜索广告组"></nz-option>
+                <nz-option nzValue="2" nzLabel="购物广告组"></nz-option>
+            </nz-select>
+            <div class="icon-text">
+                <i nz-icon nzType="align-right" nzTheme="outline"></i>
+                <div>细分</div>
+            </div>
+            
+            <div class="icon-text">
+                <i nz-icon nzType="area-chart" nzTheme="outline"></i>
+                <div>列</div>
+            </div>
+            <div class="icon-text" nz-dropdown [nzDropdownMenu]="menu3">
+                <i nz-icon nzType="download" nzTheme="outline"></i>
+                <div>下载</div>
+            </div>
+            <nz-dropdown-menu #menu3="nzDropdownMenu">
+                <ul nz-menu>
+                <li nz-menu-item> <i nz-icon nzType="share-alt" nzTheme="outline"></i> 在编辑器打开</li>
+                <li nz-menu-divider></li>
+                <li nz-menu-item>Excel.csv</li>
+                <li nz-menu-item>.csv</li>
+                <li nz-menu-item>.tsv</li>
+                <li nz-menu-item>.pdf</li>
+                <li nz-menu-item>.xlsx</li>
+                <li nz-menu-item>.xml</li>
+                <li nz-menu-item>google表格</li>
+                <li nz-menu-divider></li>
+                <li nz-menu-item>立即用电子邮件发送</li>
+                <li nz-menu-item>安排时间</li>
+                <li nz-menu-item>更多选项</li>
+                </ul>
+            </nz-dropdown-menu>
+            <div class="icon-text" (click)="getdown()"  *ngIf="!fullscreen">
+                <i nz-icon nzType="fullscreen" nzTheme="outline"></i>
+                <div>展开</div>
+            </div>
+            <div class="icon-text" (click)="getdown()" *ngIf="fullscreen">
+                <i nz-icon nzType="fullscreen-exit" nzTheme="outline"></i>
+                <div>收起</div>
+            </div>
+        </div>
+    </div>
+    <nz-table #basicTable
+        [nzData]="listOfData" 
+        [nzBordered]="true"
+        [nzScroll]="{ x: '1000px' }" 
+    >
+        <thead>
+        <tr>
+            <th nzWidth="120px"  *ngFor="let column of listOfColumn"  [nzSortFn]="column.compare"  >{{ column.title }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td   nzLeft> <nz-badge  nzStatus="success" [nzText]="data.name1"></nz-badge> </td>
+            <td >{{ data.name2 }}</td>
+            <td >{{ data.name3 }}</td>
+            <td>{{ data.name5}}</td>
+            <td>{{ data.name6}}</td>
+            <td>{{ data.name7}}</td>
+            <td>{{ data.name8}}</td>
+            <td>{{ data.name9}}</td>
+            <td>{{ data.name11}}</td>
+            <td>{{ data.name12}}</td>
+            <td>{{ data.name13}}</td>
+            <td>{{ data.name14}}</td>
+            <td>{{ data.name15}}</td>
+            <td>{{ data.name16}}</td>
+            <td>{{ data.name17}}</td>
+        </tr>
+        </tbody>
+    </nz-table>
+</div>
