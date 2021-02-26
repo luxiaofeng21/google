@@ -1,0 +1,41 @@
+<div class="ng-w10">
+    <nz-card>
+        <div class="flex">
+            <div class="lf">
+                <div class="ng-title">防止帐号出现未经授权的活动</div>
+                <div class="ng-text ng-margin">还有 4 条建议（共 5 条）可提升帐号安全性                </div>
+            </div>
+            <img style="width: 300px;" src="assets/unnamed3.png" alt="">
+        </div>
+        <div class="footer">
+            <a href="">查看安全建议</a>
+        </div>
+    </nz-card>
+    <div class="ng-margin" >
+           <app-edit label="身份验证方法" [title]="user.type">
+                <div class="content">
+                    <div class="text ng-bottom">
+                        选择在帐号用户登录帐号时需要实施的安全保护级别。选择一个新级别后，所有帐号用户都将需要进行这种级别或更高级别的身份验证才能登录。 <a href="">了解详情</a>
+                    </div> 
+                    <nz-radio-group [(ngModel)]="user.type">
+                      <label nz-radio nzValue="1" class="ng-block">
+                            <span>标准</span>
+                            <div class="ng-text">登录时只需要提供密码</div>
+                      </label>
+                      <label nz-radio nzValue="2" class="ng-block" disabled>
+                            <span>两步 <a href="">要使用此设置，请设置两步验证并刷新此页面</a> </span>
+                            <div class="ng-text">要求用户在登录时输入密码并提交通过短信或电话提醒发送的验证码</div>
+                      </label>
+                    </nz-radio-group>
+                </div>
+           </app-edit>
+           <app-edit label="允许的域名" [title]="user.url">
+            <div class="content">
+                    <div class="text ng-bottom">
+                        允许邀请哪些电子邮件地址访问此帐号？请添加这些电子邮件地址的域名 <a href="">了解详情</a>
+                    </div> 
+                    <input nz-input [(ngModel)]="user.url" id="name" name="name" placeholder="">
+            </div>
+       </app-edit>
+    </div>
+</div>

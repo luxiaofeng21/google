@@ -1,0 +1,178 @@
+
+<div id="fulldiv">
+    <div class="ng-head flex">
+        <span class="ng-title">着陆页</span>
+        <div class="rg">
+                <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+        </div>
+    </div>
+    <div class="ng-padding">
+
+        <div echarts [options]="chartOption" class="chart"></div>
+        <p></p>
+        <div class="flex ng-filter">
+            <div class="lf">
+                <button (click)="isVisible3=true"  nz-button nzType="primary" nzBlock><i nz-icon nzType="pushpin" nzTheme="fill"></i> 添加过滤条件</button>
+                <div class="button-ul">
+                    <button nz-button nzType="primary" nzSize="default" nzShape="round" *ngFor="let item of filters">{{item.title}} {{item.type}} {{item.value}}</button>
+                </div>
+            </div>
+            <div class="rg">
+                <div class="icon-text" nz-dropdown [nzDropdownMenu]="menu6">
+                    <i nz-icon nzType="align-right" nzTheme="outline"></i>
+                    <div>细分</div>
+                </div>
+                <nz-dropdown-menu #menu6="nzDropdownMenu">
+                    <ul nz-menu>
+                      <label *ngFor="let item of detail">
+                            <li *ngIf="item.children" nz-submenu  [nzTitle]="item.title" >
+                                <ul>
+                                    <li *ngFor="let v of item.children" nz-menu-item>{{v.title}}</li>
+                                </ul>
+                            </li>
+                            <li *ngIf="!item.children" nz-menu-item>{{item.title}}</li>
+                      </label>
+                    
+                    </ul>
+                  </nz-dropdown-menu>
+                <div class="icon-text"  (click)="isVisible=true">
+                    <i nz-icon nzType="area-chart" nzTheme="outline"></i>
+                    <div>列</div>
+                </div>
+                <div class="icon-text" nz-dropdown [nzDropdownMenu]="menu3">
+                    <i nz-icon nzType="download" nzTheme="outline"></i>
+                    <div>下载</div>
+                </div>
+                <nz-dropdown-menu #menu3="nzDropdownMenu">
+                    <ul nz-menu>
+                    <li nz-menu-item> <i nz-icon nzType="share-alt" nzTheme="outline"></i> 在编辑器打开</li>
+                    <li nz-menu-divider></li>
+                    <li nz-menu-item>Excel.csv</li>
+                    <li nz-menu-item>.csv</li>
+                    <li nz-menu-item>.tsv</li>
+                    <li nz-menu-item>.pdf</li>
+                    <li nz-menu-item>.xlsx</li>
+                    <li nz-menu-item>.xml</li>
+                    <li nz-menu-item>google表格</li>
+                    <li nz-menu-divider></li>
+                    <li nz-menu-item>立即用电子邮件发送</li>
+                    <li nz-menu-item>安排时间</li>
+                    <li nz-menu-item>更多选项</li>
+                    </ul>
+                </nz-dropdown-menu>
+                <div class="icon-text" (click)="getdown()"  *ngIf="!fullscreen">
+                    <i nz-icon nzType="fullscreen" nzTheme="outline"></i>
+                    <div>展开</div>
+                </div>
+                <div class="icon-text" (click)="getdown()" *ngIf="fullscreen">
+                    <i nz-icon nzType="fullscreen-exit" nzTheme="outline"></i>
+                    <div>收起</div>
+                </div>
+            </div>
+        </div>
+        <nz-table #basicTable
+        [nzData]="listOfData" 
+        [nzBordered]="true"
+        [nzScroll]="{ x: '1000px' }" 
+        (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        >
+            <thead>
+            <tr>
+                <th nzWidth="50px"  nzLeft  [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+                <th  *ngFor="let column of listOfColumn"  [nzSortFn]="column.compare"  >{{ column.title }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td  > <a href=""></a>  </td>
+                <td >{{ data.name2 }}</td>
+                <td >{{ data.name3 }}</td>
+                <td>{{ data.name5}}</td>
+                <td>{{ data.name6}}</td>
+                <td>{{ data.name7}}</td>
+                <td>{{ data.name8}}</td>
+                <td>{{ data.name9}}</td>
+                <td>{{ data.name11}}</td>
+                <td>{{ data.name12}}</td>
+                <td>{{ data.name13}}</td>
+                <td>{{ data.name14}}</td>
+                <td>{{ data.name15}}</td>
+                <td>{{ data.name16}}</td>
+                <td>{{ data.name17}}</td>
+            </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="修改广告系列表格中显示的列" (nzOnCancel)="isVisible=false"  nzWidth="60%">
+           <div class="example-input ng-bottom">
+                <input placeholder="input here" nz-input [(ngModel)]="train"  [nzAutocomplete]="auto" />
+                <nz-autocomplete [nzDataSource]="options" nzBackfill #auto></nz-autocomplete>
+          </div>
+          <nz-collapse>
+            <nz-collapse-panel *ngFor="let panel of panels" [nzHeader]="panel.name" [nzActive]="panel.active" [nzDisabled]="panel.disabled">
+                <label nz-checkbox [(ngModel)]="v.checked" *ngFor="let v of panel.children">{{v.title}}</label>
+            </nz-collapse-panel>
+          </nz-collapse>
+</nz-modal> 
+<nz-modal [(nzVisible)]="isVisible2" nzTitle="选择广告组" (nzOnCancel)="isVisible2=false"  nzWidth="500px">
+    <nz-input-group nzSize="large" [nzSuffix]="suffixIcon2" nzSize="default">
+        <input placeholder="按名称或广告系列 ID 搜索" nz-input [(ngModel)]="filter.name4"  />
+      </nz-input-group>
+      <ng-template #suffixIcon2>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+      <ul nz-menu nzMode="inline">
+        <li nz-menu-group [nzTitle]="optionGroups.length+'个广告组'"></li>
+        <li nz-menu-item *ngFor="let option of optionGroups">
+            
+            <nz-badge nzStatus="success" [nzText]="option.title"></nz-badge>
+        </li>
+    </ul>
+</nz-modal> 
+<nz-modal [(nzVisible)]="isVisible3"(nzOnCancel)="isVisible3=false"  [nzClosable]="false"  nzWidth="500px">
+     <nz-input-group nzSize="large" [nzSuffix]="suffixIcon2" nzSize="default">
+        <input placeholder="按名称或广告系列 ID 搜索" nz-input [(ngModel)]="filter.name4"  />
+      </nz-input-group>
+      <ng-template #suffixIcon2>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+      <ul nz-menu nzMode="inline" style="height: 450px;overflow-y: auto;overflow-x: hidden;">
+        <li nz-submenu [nzTitle]="panel.name" *ngFor="let panel of panels">
+          <ul>
+                <li nz-menu-item *ngFor="let v of panel.children" (click)="getfilter(v)">{{v.title}}</li>
+          </ul>
+        </li>
+      </ul>
+</nz-modal> 
+<nz-modal [(nzVisible)]="isVisible4" (nzOnCancel)="isVisible4=false"  [nzTitle]="info.title" nzWidth="500px" (nzOnOk)="addfilter()">
+        <div class="ng-flex">
+            <nz-select [(ngModel)]="info.type" style="width: 100px;margin-right: 10px;">
+                <nz-option
+                    nzLabel=">"
+                    nzValue=">">
+                </nz-option>
+                <nz-option
+                    nzLabel=">="
+                    nzValue=">=">
+                </nz-option>
+                <nz-option
+                    nzLabel="="
+                    nzValue="=">
+                </nz-option>
+                <nz-option
+                    nzLabel="不等于"
+                    nzValue="不等于">
+                </nz-option>
+                <nz-option
+                    nzLabel="<"
+                    nzValue="<">
+                </nz-option>
+                <nz-option
+                    nzLabel="<="
+                    nzValue="<=">
+                </nz-option>
+            </nz-select>
+            <nz-input-number  nzPlaceHolder="值" [(ngModel)]="info.value" nzMin="0"></nz-input-number>
+        </div>
+</nz-modal> 

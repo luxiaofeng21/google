@@ -1,0 +1,28 @@
+.set-ul{
+   li{
+     .lf{
+         font-size: 25px;
+         margin-right: 25px;
+         color: #666;
+     }
+     .rg{
+        font-size: 14px;
+        flex: 1;
+         .title{
+             i{
+                 font-weight: bold;
+                 color: #666;
+                 margin-left: 10px;
+                 cursor: pointer;
+             }
+             
+             margin-bottom: 5px;
+         }
+        .text{
+            color: #999;
+        }  
+     }
+     margin: 15px 0;
+     display: flex;
+   }
+}

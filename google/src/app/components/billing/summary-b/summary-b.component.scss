@@ -1,0 +1,26 @@
+.pay{
+    .price{
+        font-size: 25px;
+    }
+    .text{
+        font-size: 12px;
+        color: #999;
+    }
+    .flex{
+        margin-top: 50px;
+        button{
+            width: 200px;
+        }
+    }
+}
+.pay-content{
+    display: flex;
+    justify-content: space-between;
+    >*{
+        width: 49%;
+    }
+   
+}
+nz-card{
+    height: 230px;
+}

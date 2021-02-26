@@ -1,0 +1,19 @@
+.product-ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0;
+    nz-card{
+        width: 49%;
+        margin-bottom: 15px;
+        .title{
+            display: flex;
+            align-items: center;
+            i{
+                font-size: 25px;
+                margin-right: 10px;
+            }
+          
+        }
+    }
+}

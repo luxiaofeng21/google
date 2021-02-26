@@ -1,0 +1,149 @@
+
+<div id="fulldiv">
+    <div class="ng-head flex">
+        <span class="ng-title">否定关键字</span>
+        <div class="rg">
+                <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+        </div>
+    </div>
+    <div class="ng-padding">
+
+        <div class="flex ng-filter">
+            <div class="lf">
+                <button (click)="isVisible=true"  nz-button nzType="primary" nzSize="large" nzShape="circle"><i nz-icon nzType="plus" nzTheme="outline"></i></button>
+                <button (click)="isVisible3=true"  nz-button nzType="primary" nzBlock><i nz-icon nzType="pushpin" nzTheme="fill"></i> 添加过滤条件</button>
+                <div class="button-ul">
+                    <button nz-button nzType="primary" nzSize="default" nzShape="round" *ngFor="let item of filters">{{item.title}} {{item.type}} {{item.value}} {{item.children}}</button>
+                </div>
+            </div>
+            <div class="rg">
+                
+                <div class="icon-text" nz-popover [nzPopoverContent]="menu3" nzPopoverTrigger="click">
+                    <i nz-icon nzType="download" nzTheme="outline"></i>
+                    <div>下载</div>
+                </div>
+                <ng-template #menu3>
+                    <ul nz-menu>
+                    <li nz-menu-item> <i nz-icon nzType="share-alt" nzTheme="outline"></i> 在编辑器打开</li>
+                    <li nz-menu-divider></li>
+                    <li nz-menu-item>Excel.csv</li>
+                    <li nz-menu-item>.csv</li>
+                    <li nz-menu-item>.tsv</li>
+                    <li nz-menu-item>.pdf</li>
+                    <li nz-menu-item>.xlsx</li>
+                    <li nz-menu-item>.xml</li>
+                    <li nz-menu-item>google表格</li>
+                    <li nz-menu-divider></li>
+                    <li nz-menu-item>立即用电子邮件发送</li>
+                    <li nz-menu-item>安排时间</li>
+                    <li nz-menu-item>更多选项</li>
+                    </ul>
+                </ng-template>
+                <div class="icon-text" (click)="getdown()"  *ngIf="!fullscreen">
+                    <i nz-icon nzType="fullscreen" nzTheme="outline"></i>
+                    <div>展开</div>
+                </div>
+                <div class="icon-text" (click)="getdown()" *ngIf="fullscreen">
+                    <i nz-icon nzType="fullscreen-exit" nzTheme="outline"></i>
+                    <div>收起</div>
+                </div>
+            </div>
+        </div>
+        <nz-table #basicTable
+        [nzData]="listOfData" 
+        [nzBordered]="true"
+        [nzScroll]="{ x: '1000px' }" 
+        (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        >
+            <thead>
+            <tr>
+                <th nzWidth="50px"  nzLeft  [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+                <th nzWidth="150px" [nzLeft]="index<2" *ngFor="let column of listOfColumn;let index=index"  [nzSortFn]="column.compare"  >{{ column.title }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td   nzLeft [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+                <td   nzLeft>
+                     <span (click)="keyInfo=data"  class="edit-hover" nz-popover  nzPopoverTrigger="click"  [nzPopoverContent]="keyword" nzPopoverTitle="关键字">
+                        {{data.keyword}}
+                        <i nz-icon nzType="edit" nzTheme="fill"></i>
+                    </span>    
+                    <ng-template #keyword>
+                        <input nz-input placeholder="Basic usage" [(ngModel)]="keyInfo.keyword" class="ng-bottom" />
+                        <nz-select nzShowSearch  nzPlaceHolder="Select a person" [(ngModel)]="keyInfo.name3" class="ng-block">
+                            <nz-option [nzLabel]="item" [nzValue]="index" *ngFor="let item of types;let index=index"></nz-option>
+                        </nz-select>
+                    </ng-template>
+                </td>
+                <td   nzLeft><a href="">{{data.name}}</a>  <span *ngIf="data.name">></span> <a href="">{{data.name1}}</a>  </td>
+                <td >{{ data.name2 }}</td>
+                <td >{{ types[data.name3]}}  </td>
+            </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="添加否定关键字" (nzOnCancel)="isVisible=false"   (nzOnOk)="getkey()">
+    <nz-radio-group [(ngModel)]="addkey.value">
+        <label nz-radio nzValue="1">添加否定关键字或新建列表</label>
+        <label nz-radio nzValue="2">使用否定关键字列表</label>
+    </nz-radio-group>
+    <div class="ng-margin">
+        通过设置否定关键字，可以避免搜索或浏览与这些字词相关内容的用户看到您的广告
+    </div>
+    <div class="ng-margin">
+            <div class="ng-text">添加到</div>
+            <nz-select nzShowSearch  nzPlaceHolder="Select a person" [(ngModel)]="addkey.type" class="ng-block">
+                <nz-option nzLabel="广告系列" [nzValue]="1"></nz-option>
+                <nz-option nzLabel="广告组" [nzValue]="2"></nz-option>
+            </nz-select>
+    </div>
+    <div class="ng-text">否定关键字</div>
+    <textarea [(ngModel)]="addkey.text" nz-input placeholder="Controlled autosize" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+</nz-modal> 
+<nz-modal [(nzVisible)]="isVisible3"(nzOnCancel)="isVisible3=false"  [nzClosable]="false"  nzWidth="500px">
+     <nz-input-group nzSize="large" [nzSuffix]="suffixIcon2" nzSize="default">
+        <input placeholder="按名称或广告系列 ID 搜索" nz-input [(ngModel)]="filter.name4"  />
+      </nz-input-group>
+      <ng-template #suffixIcon2>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+      <ul nz-menu nzMode="inline" style="height: 450px;overflow-y: auto;overflow-x: hidden;">
+            <li nz-menu-item *ngFor="let v of panels" (click)="getfilter(v)">{{v.name}}</li>
+      </ul>
+</nz-modal> 
+<nz-modal [(nzVisible)]="isVisible4" (nzOnCancel)="isVisible4=false"  [nzTitle]="info.title" nzWidth="500px" (nzOnOk)="addfilter()" >
+        <div *ngIf="info.children.length>0">
+            <label nz-checkbox [(ngModel)]="v.checked" *ngFor="let v of info.children">{{v.title}}</label>
+        </div>
+        <div *ngIf="info.children.length<=0" class="ng-flex">
+            <nz-select [(ngModel)]="info.type" style="width: 100px;margin-right: 10px;">
+                <nz-option
+                    nzLabel="包含"
+                    nzValue="包含">
+                </nz-option>
+                <nz-option
+                    nzLabel="不包含"
+                    nzValue="不包含">
+                </nz-option>
+                <nz-option
+                    nzLabel="包含（区分大小写）"
+                    nzValue="包含（区分大小写）">
+                </nz-option>
+                <nz-option
+                    nzLabel="不包含（区分大小写）"
+                    nzValue="不包含（区分大小写）">
+                </nz-option>
+                <nz-option
+                    nzLabel="等于"
+                    nzValue="等于">
+                </nz-option>
+                <nz-option
+                    nzLabel="开头为"
+                    nzValue="开头为">
+                </nz-option>
+            </nz-select>
+            <input class="ng-inline"  placeholder="值" [(ngModel)]="info.value" nz-input />
+        </div>
+</nz-modal> 

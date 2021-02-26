@@ -1,0 +1,124 @@
+<div class="emait">
+        <div class="ng-title">修改通知设置</div>
+        <p>修改您的帐号要接收的通知类型。 <a href="">了解详情</a> </p>
+        <div class="ng-margin"> 
+            通知设置： 
+            <nz-select [(ngModel)]="email" name="value" nzPlaceHolder="选择邮箱" >
+              <nz-option
+                *ngFor="let item of emailList"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+                [nzDisabled]="item.disabled">
+              </nz-option>
+            </nz-select>
+        </div>
+        <nz-card>
+          <form nz-form formGroup="FormGroup">
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">通知主题</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                      电子邮件设置
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">效果报告</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                      <nz-switch [(ngModel)]="info.name1" ></nz-switch>
+                     <span>全部接收</span>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">简报</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                      <nz-switch [(ngModel)]="info.name2" ></nz-switch>
+                     <span>全部接收</span>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">Google 市场调研，包含新功能试用邀请</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                      <nz-switch [(ngModel)]="info.name3" ></nz-switch>
+                     <span>全部接收</span>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">个性化优化建议</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                      <nz-switch [(ngModel)]="info.name4" ></nz-switch>
+                     <span>全部接收</span>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">产品推广和活动信息</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                      <nz-switch [(ngModel)]="info.name5" ></nz-switch>
+                     <span>全部接收</span>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">广告拒登和政策提醒</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                      <nz-select [(ngModel)]="info.name6" name="" nzPlaceHolder="" nzAllowClear>
+                        <nz-option
+                          nzLabel="全部接收"
+                          nzValue="1">
+                        </nz-option>
+                        <nz-option
+                          nzLabel="只接收主要邮件"
+                          nzValue="2">
+                        </nz-option>
+                        <nz-option
+                          nzLabel="不接收邮件"
+                          nzValue="3">
+                        </nz-option>
+                      </nz-select>
+                      
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">广告系列维护</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                      <nz-switch [(ngModel)]="info.name7" ></nz-switch>
+                     <span>全部接收</span>
+              </nz-form-control>
+            </nz-form-item>
+
+              <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">帐号安全</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                    <nz-select [(ngModel)]="info.name8" name="" nzPlaceHolder="" nzAllowClear>
+                      <nz-option
+                        nzLabel="全部接收"
+                        nzValue="1">
+                      </nz-option>
+                      <nz-option
+                        nzLabel="只接收主要邮件"
+                        nzValue="2">
+                      </nz-option>
+                    </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">报告</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                    <nz-select [(ngModel)]="info.name9" name="" nzPlaceHolder="" nzAllowClear>
+                      <nz-option
+                        nzLabel="所有可用报告"
+                        nzValue="1">
+                      </nz-option>
+                      <nz-option
+                        nzLabel="只接收我生成的报告"
+                        nzValue="2">
+                      </nz-option>
+                    </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="email">结算提醒</nz-form-label>
+              <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                    <a href="">修改付款联系人</a>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+        </nz-card>
+</div>

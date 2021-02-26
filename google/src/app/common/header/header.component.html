@@ -1,40 +1,75 @@
 <header id="google-header">
-        <div class="lf">
-                <i class="click-icon" nz-icon nzType="bars" nzTheme="outline"></i>
+        <div class="lf" (click)="gethome()">
+                <i class="click-icon"  nz-icon nzType="menu" nzTheme="outline"></i>
                 <div  class="logo">
                       <img src="assets/logo.png" alt="">
                       <span>Google Ads</span>
-                      <span>所有广告系列</span>
+                      <span>{{'index' | translate}}</span>
                 </div>
         </div>
         <div class="rg">
             <ul class="head-tool">
                     <li>
                         <i nz-icon nzType="search" nzTheme="outline"></i>
-                        <div>搜索</div>
+                        <div>{{'search' | translate}}</div>
                     </li>
                     <li>
-                        <i nz-icon nzType="bar-chart" nzTheme="outline"></i>
-                        <div>报告</div>
+                        <i nz-icon nzType="fund" nzTheme="fill"></i>
+                        <div>{{'report' | translate}}</div>
                     </li>
                     <li>
                         <i nz-icon nzType="tool" nzTheme="fill"></i>
-                        <div>工具</div>
+                        <div>{{'tools' | translate}}</div>
                     </li>
-                    <li>
+                    
+                    <li nz-popover [nzPopoverContent]="contentTemplate" nzPopoverTrigger="click">
                         <i nz-icon nzType="setting" nzTheme="fill"></i>
-                        <div>设置和结算</div>
+                        <div>{{'she' | translate}}</div>
                     </li>
+                    <ng-template #contentTemplate>
+                            <div class=" she-flex">
+                                <div class="lf">
+                                    <div class="popover-title"> 
+                                        <i nz-icon nzType="setting" nzTheme="fill"></i>
+                                        <span>账号</span>    
+                                    </div>
+                                    <ul class="popover-ul">
+                                        <a [routerLink]="[ item.path ]" *ngFor="let item of popver" routerLinkActive="active">
+                                            <li >
+                                                    {{item.title}}
+                                            </li>     
+                                        </a>   
+                                    </ul>
+                                </div>
+                                <span></span>
+                                <div class="rg">
+                                    <div class="popover-title"> 
+                                        <i nz-icon nzType="credit-card" nzTheme="fill"></i>
+                                        <span>结算</span>    
+                                    </div>
+                                    <ul class="popover-ul">
+                                        <a [routerLink]="[ item.path ]" *ngFor="let item of popver2" routerLinkActive="active">
+                                            <li >
+                                                {{item.title}}
+                                            </li>     
+                                        </a>      
+                                    </ul>
+                                </div>
+                            </div>
+                                
+                    </ng-template>
             </ul>
             <ul class="head-ul">
-                    <li>
+                    <li [nzTooltipTitle]="'refresh' | translate" nzTooltipPlacement="bottom" nz-button nz-tooltip>
                         <i class="click-icon" nz-icon nzType="reload" nzTheme="outline"></i>
                     </li>
-                    <li>
+                    <li [nzTooltipTitle]="'help' | translate" nzTooltipPlacement="bottom" nz-button nz-tooltip>
                         <i class="click-icon" nz-icon nzType="question-circle" nzTheme="fill"></i>
                     </li>
-                    <li>
-                        <i class="click-icon" nz-icon nzType="bell" nzTheme="fill"></i>
+                    <li [nzTooltipTitle]="'notifications' | translate" nzTooltipPlacement="bottom" nz-button nz-tooltip class="click-icon">
+                        <nz-badge [nzCount]="5" >
+                            <i  nz-icon nzType="bell" nzTheme="fill"></i>
+                        </nz-badge>
                     </li>
             </ul>
             <div class="head-user">
@@ -42,7 +77,7 @@
                         <div class="title">980-713-9776</div>
                         <div class="title">a543787366@gmail.com</div>
                     </div>
-                    <div class="img"> </div>
+                    <div class="img">果果</div>
             </div>
         </div>
 </header>

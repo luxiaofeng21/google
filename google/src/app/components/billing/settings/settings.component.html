@@ -1,0 +1,213 @@
+<div>
+    <div class="ng-w10">
+        <nz-card class="ng-margin">
+             <div class="ng-title">付款帐号</div>
+             <ul class="set-ul">
+                    <li>
+                        <div class="lf">
+                            <i nz-icon nzType="user" nzTheme="outline"></i>
+                        </div>
+                        <div class="rg">
+                                <div class="title"> 付款帐号 ID  <i nz-popover  nzPopoverContent="此 ID 号用于标识付款帐号。付款帐号包含付款方式信息以及文档递送地址信息。它不同于付款资料 ID，后者是分配给负责相应付款帐号的法律实体的唯一 ID。" nz-icon nzType="question-circle" nzTheme="outline"></i> </div>
+                                <div class="text">1376-7039-4218-5325</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="lf">
+                            <i nz-icon nzType="user" nzTheme="outline"></i>
+                        </div>
+                        <div class="rg">
+                                <div class="title"> 付款帐号别名  <i nz-icon nzType="edit" nzTheme="fill" (click)="getshow()"></i> </div>
+                                <div class="text" *ngIf="show">{{user.name}}</div>
+                                <div class="content" *ngIf="!show">
+                                    <input class="ng-block" nz-input [(ngModel)]="user.name" id="name" name="name" placeholder="付款账号别名">
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="lf">
+                            <i nz-icon nzType="pay-circle" nzTheme="outline"></i>
+                        </div>
+                        <div class="rg">
+                                <div class="title"> 付款选项 </div>
+                                <div class="text">人工付款</div>
+                        </div>
+                    </li>
+             </ul>
+             <span>
+                您需要使用付款帐号的余额支付此服务的费用。每次产生费用后，我们会从您的预付款余额中扣除相应款项。如果该付款帐号中的余额用尽，服务将会停止。为帐号充值后，服务会自动恢复。
+             </span>
+        </nz-card>
+        <nz-card class="ng-margin">
+            <div class="ng-title">付款资料</div>
+            <ul class="set-ul">
+                   <li>
+                       <div class="lf">
+                           <i nz-icon nzType="user" nzTheme="outline"></i>
+                       </div>
+                       <div class="rg">
+                               <div class="title"> 付款资料 ID <i nz-popover  nzPopoverContent="付款资料 ID（以前称为结算 ID）是一组唯一编号，用于标识负责此付款帐号关联帐单的法律实体（即注册此付款帐号的组织或个人）。" nz-icon nzType="question-circle" nzTheme="outline"></i> </div>
+                               <div class="text">3786-5384-0544</div>
+                       </div>
+                   </li>
+                   <li>
+                       <div class="lf">
+                        <i nz-icon nzType="global" nzTheme="outline"></i>
+                       </div>
+                       <div class="rg">
+                               <div class="title"> 国家/地区 </div>
+                               <div class="text">台湾（TW）</div>
+                       </div>
+                   </li>
+                   <li>
+                       <div class="lf">
+                            <i nz-icon nzType="idcard" nzTheme="outline"></i>
+                       </div>
+                       <div class="rg">
+                               <div class="title"> 账号类型  <i nz-popover  nzPopoverContent="系统会根据您的付款资料和您所在的国家/地区来确定您在付款之外还需缴纳的税费以及应该向您发送哪些类型的文档。" nz-icon nzType="question-circle" nzTheme="outline"></i> </div>
+                               <div class="text">个人</div>
+                       </div>
+                   </li>
+                   <li>
+                        <div class="lf">
+                            <i nz-icon nzType="schedule" nzTheme="fill"></i>
+                        </div>
+                        <div class="rg">
+                                <div class="title"> 
+                                    <span>台湾税务信息</span> 
+                                    <i nz-popover  nzPopoverContent="不同国家/地区的税费可能有所不同。" nz-icon nzType="question-circle" nzTheme="outline"></i> 
+                                    <i nz-icon nzType="edit" nzTheme="fill" nzPopoverTrigger="click" nzPopoverPlacement="bottom"  nzPopoverTitle="纳税身份"  nz-popover [nzPopoverContent]="contentTemplate"></i>
+                                </div>
+                                <div class="text">纳税身份：{{user.name2 }}</div>
+                                <ng-template #contentTemplate>
+                                    <nz-select [(ngModel)]="user.name2"  nzPlaceHolder="纳税身份" nzAllowClear>
+                                        <nz-option
+                                        *ngFor="let item of identitys"
+                                        [nzLabel]="item.label"
+                                        [nzValue]="item.value">
+                                        </nz-option>
+                                    </nz-select>
+                                </ng-template>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="lf">
+                            <i nz-icon nzType="reconciliation" nzTheme="outline"></i>
+                        </div>
+                        <div class="rg">
+                                <div class="title"> 
+                                    <span>姓名和地址</span> 
+                                    <i nz-popover  nzPopoverContent="这是您的公司或家庭的法定地址。" nz-icon nzType="question-circle" nzTheme="outline"></i> 
+                                    <i nz-icon nzType="edit" nzTheme="fill" nzPopoverTrigger="click" nzPopoverPlacement="bottom"  nzPopoverTitle="姓名和地址"  nz-popover [nzPopoverContent]="contentTemplate2"></i>
+                                </div>
+                                <div class="text"> {{user.country}} {{user.code}} {{user.city}} {{user.region}}</div>
+                                <div class="text">{{user.address}}</div>
+                                <div class="text">{{user.username}}</div>
+                                <ng-template #contentTemplate2>
+                                   <div style="width: 400px;">
+                                        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" >
+                                            <nz-form-item>
+                                                <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="email">邮编</nz-form-label>
+                                                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="邮编">
+                                                    <input nz-input [(ngModel)]="user.code" id="name" name="name" placeholder="邮编">
+                                                </nz-form-control>
+                                            </nz-form-item>
+                                            <nz-form-item>
+                                                <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="email">县/市</nz-form-label>
+                                                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="县/市">
+                                                    <nz-select [(ngModel)]="user.name2"  nzPlaceHolder="县/市" nzAllowClear>
+                                                        <nz-option
+                                                        *ngFor="let item of identitys"
+                                                        [nzLabel]="item.label"
+                                                        [nzValue]="item.value">
+                                                        </nz-option>
+                                                    </nz-select>
+                                                </nz-form-control>
+                                            </nz-form-item>
+                                            <nz-form-item>
+                                                <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="email">市/区</nz-form-label>
+                                                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="市/区">
+                                                    <nz-select [(ngModel)]="user.name2"  nzPlaceHolder="市/区" nzAllowClear>
+                                                        <nz-option
+                                                        *ngFor="let item of identitys"
+                                                        [nzLabel]="item.label"
+                                                        [nzValue]="item.value">
+                                                        </nz-option>
+                                                    </nz-select>
+                                                </nz-form-control>
+                                            </nz-form-item>
+                                            <nz-form-item>
+                                                <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="email">地址第1行</nz-form-label>
+                                                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="市/区">
+                                                    <input nz-input [(ngModel)]="user.address" id="name" name="name" placeholder="">
+                                                </nz-form-control>
+                                            </nz-form-item>
+                                            <nz-form-item>
+                                                <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="email">地址第2行</nz-form-label>
+                                                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="市/区">
+                                                    <input nz-input [(ngModel)]="user.address" id="name" name="name" placeholder="">
+                                                </nz-form-control>
+                                            </nz-form-item>
+                                            <nz-form-item>
+                                                <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="email">电话号码</nz-form-label>
+                                                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="电话号码">
+                                                    <input nz-input [(ngModel)]="user.tell" id="name" name="name" placeholder="">
+                                                </nz-form-control>
+                                            </nz-form-item>
+                                        </form>
+                                    </div>
+                                </ng-template>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="lf">
+                            <i nz-icon nzType="global" nzTheme="outline"></i>
+                        </div>
+                        <div class="rg">
+                                <div class="title"> 
+                                    <span>首选的文档语言</span> 
+                                   <i nz-icon nzType="edit" nzTheme="fill" nzPopoverTrigger="click" nzPopoverPlacement="bottom"  nzPopoverTitle="首选的文档语言"  nz-popover [nzPopoverContent]="contentTemplate3"></i>
+                                </div>
+                                <div class="text">{{user.lang}}</div>
+                                <ng-template #contentTemplate3>
+                                    <div style="width: 400px;">
+                                         <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" >
+                                             <nz-form-item>
+                                                 <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="email">邮编</nz-form-label>
+                                                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="邮编">
+                                                        <nz-select [(ngModel)]="user.lang"  nzPlaceHolder="" nzAllowClear>
+                                                          <nz-option
+                                                            *ngFor="let item of langList"
+                                                            [nzLabel]="item.label"
+                                                            [nzValue]="item.value"
+                                                            [nzDisabled]="item.disabled">
+                                                          </nz-option>
+                                                        </nz-select>
+                                                        
+                                                 </nz-form-control>
+                                             </nz-form-item>
+                                         </form>
+                                     </div>
+                                 </ng-template>
+                        </div>
+                    </li>
+            </ul>
+       </nz-card>
+       <nz-card>
+            <div class="ng-title">付款用户 <i nz-popover  nzPopoverContent="您可以向自己管理的任何 Google 付款资料添加其他人员。添加时，您需要指定此人所具有的权限，包括是否可以邀请其他用户、购买或注册 Google 付费服务、查看您的付款记录或更改付款资料等。" nz-icon nzType="question-circle" nzTheme="outline"></i> </div>
+            <ul class="set-ul">
+                <li>
+                    <div class="lf">
+                        <i nz-icon nzType="user" nzTheme="outline"></i>
+                    </div>
+                    <div class="rg">
+                            <div class="title"> 主要联系人 </div>
+                            <div class="text">{{user.username}}</div>
+                            <div class="text">接收所有付款电子邮件</div>
+                            <div class="text">a543787366@gmail.com</div>
+                    </div>
+                </li>
+         </ul>
+       </nz-card>
+    </div>
+</div>

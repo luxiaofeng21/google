@@ -1,0 +1,123 @@
+<div class="ng-head flex">
+    <span class="ng-title">效果详情</span>
+    <div class="rg">
+            <nz-range-picker [(ngModel)]="date" (ngModelChange)="Changedate($event)"></nz-range-picker>
+    </div>
+</div>
+
+<div class="ng-w10">
+        <div class="ng-title">测试推广 <i nz-icon nzType="edit" nzTheme="outline"></i> </div>
+        <div class="express-title">  
+                <div class="button-success"> 正在运行 <i nz-icon nzType="caret-down" nzTheme="outline"></i></div>
+                <span>您的广告系列处于有效状态，且您的广告已开始投放！您几天后将会开始看到效果。</span>
+        </div>
+        <nz-card [nzActions]="[actionSetting]">
+                <span class="price">NT$0.00</span>
+                <span>支出金额</span>
+                <ul class="gong-ul">
+                        <li *ngFor="let item of gong">
+                            <i nz-icon [nzType]="item.icon" [nzTheme]="'twotone'" [nzTwotoneColor]="item.color"></i>
+                            <div class="num">{{item.num}}</div>
+                            <div class="title">{{item.title}}</div>
+                            <div class="text">{{item.text}}</div>
+                        </li>
+                </ul>
+        </nz-card>
+        <ng-template #actionSetting>
+            <a href="">查看详细信息</a>
+        </ng-template>
+
+
+        <div class="half-flex ng-margin">
+                <nz-card [nzActions]="[actionSetting]">
+                    <div class="ng-title">关键字主题和搜索字词报告</div>
+                    <div class="popover-title"> 
+                        <i nz-icon nzType="search" nzTheme="outline"></i>
+                        <span>明确关键字主题后，当用户在 Google 上搜索的内容与这些主题匹配时，您的广告就可以展示。</span>    
+                    </div>
+                    <ul class="type-ul">
+                            <li *ngFor="let item of types">{{item}}</li>
+                    </ul>
+                </nz-card>
+                <ng-template #actionSetting>
+                    <a href="">查看详细信息</a>
+                </ng-template>
+                <nz-card  [nzActions]="[actionSetting]">
+                    <div class="ng-title">广告</div>
+                    <div class="iphone">     
+                            <nz-input-group nzAddOnAfterIcon="search" nzSize="small" class="ng-bottom"  >
+                                <input type="text" nz-input  />
+                            </nz-input-group>        
+                            <div class="iphone-contnet">
+                                    <div class="iphone-web">
+                                        www.bilili.con/aa/aaa
+                                    </div>
+                                    <a href="">这是一个火爆的网站 | sad | sadasd</a>
+                                    <div class="iphone-title">这是一个百度广告描述. 这是一个百度广告描述2.</div>
+                                    
+                            </div>
+                            <div style="border: 1px solid #ddd;" class="popover-title"> <i nz-icon nzType="phone" nzTheme="outline"></i> 致电商家 </div>
+                    </div>
+                </nz-card>
+                <ng-template #actionSetting>
+                    <a href="">查看详细信息</a>
+                </ng-template>
+                
+        </div>
+        <div class="half-flex ng-margin">
+                <nz-card [nzActions]="[actionSetting]">
+                    <div class="ng-title">位置和广告投放时间</div>
+                    <div class="popover-title"> <i nz-icon nzType="environment" nzTheme="fill"></i> 您的广告会在台湾展示</div>
+                    <div class="popover-title"> <i nz-icon nzType="field-time" nzTheme="outline"></i> 您的广告随时都可展示</div>
+                </nz-card>
+                <ng-template #actionSetting>
+                    <a href="">查看详细信息</a>
+                </ng-template>
+                
+                <nz-card [nzActions]="[actionSetting]">
+                    <div class="ng-title">预算</div>
+                    <div class="popover-title"> 
+                        <i nz-icon nzType="strikethrough" nzTheme="outline"></i>            
+                        <div class="rg">
+                                <div class="ng-bottom">您只需为广告获得的点击付费。整月的支出不会超过每月预算上限。</div>
+                                <div class="yusuan">  <span>NT$32</span> 平均每日预算</div>
+                                <div>NT$1,000 每月预算上限</div>
+                        </div>      
+                    </div>
+                </nz-card>
+                <ng-template #actionSetting>
+                    <a href="">查看详细信息</a>
+                </ng-template>
+        </div>
+
+        <p>常见问题解答</p>
+        <nz-collapse class="ng-bottom" >
+            <nz-collapse-panel nzHeader="为什么我在搜索结果中找不到我的广告？" >
+                    <p >
+                        如果您的信息中心显示广告系列处于有效状态，并且您在不断获得点击和展示，那就说明您的广告在向客户展示。
+                        您的预算、网站质量、广告质量、地理位置设置和关键字主题都决定着广告的展示时机和展示位置。
+                    </p>
+            <p> <a href="">了解详情</a> 在 Google 上展示广告的时机和位置决定因素。</p>
+            </nz-collapse-panel>
+            <nz-collapse-panel nzHeader="我的广告会在哪些位置展示？" >
+                    <p>您的广告会在 Google 搜索、Google 地图、Gmail、YouTube 和 Google 合作伙伴网站上展示。我们会在不同的位置展示您的广告，尽可能为您带来最理想的效果。</p>
+                    <p><a href="">了解详情</a> 智能广告系列中广告的运作方式。</p>
+            </nz-collapse-panel>
+            <nz-collapse-panel nzHeader="按什么向我收费？" >
+                    <p>您只需为广告获得的点击和为您吸引的来电付费。我们不会按展示次数向您收费。</p>
+                    <p>每次点击或来电的费用取决于多种因素，例如，用户寻找像您这样的商家的频率，以及投放了广告的竞争商家的数量。尽管费用有所变化，但您所需支付的费用绝不会超过每月预算。</p>
+                    <p><a href="">了解详情</a> 费用和付款详情简介。</p>
+            </nz-collapse-panel>
+            <nz-collapse-panel nzHeader="为何选择智能广告系列？" >
+                <p>智能广告系列是一款高效且简便的解决方案，可以在 Google 上吸引用户注意您的商家。智能广告系列以 Google 的广告技术为后盾，可以根据您的广告系列目标帮助您取得期望的广告效果，比如吸引客户来电、光顾实体店或在您的网站上采取特定操作。                </p>
+                <p><a href="">了解详情</a> 智能广告系列。</p>
+            </nz-collapse-panel>
+            <nz-collapse-panel nzHeader="我的预算是如何使用的？" >
+                <p>制作智能广告系列时，您需要设置每月预算。由于广告需求会发生变化，因此您每天的费用可能会有所不同，但整个月的费用不会超出您的每月预算。</p>
+                <p><a href="">了解详情</a> 智能广告系列的费用和付款信息。</p>
+            </nz-collapse-panel>
+
+        </nz-collapse>
+
+          
+</div>

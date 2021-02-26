@@ -1,0 +1,16 @@
+.ng-layout{
+    display: flex;
+    background-color: #F1F3F4;
+    .lf{
+        width: 150px;
+        a{
+            color: #000;
+        }
+        .ant-menu-item-selected{
+            color: #185abc;
+        }
+    }
+    .content{
+        flex: 1;
+    }
+}

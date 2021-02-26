@@ -1,0 +1,11 @@
+<div class="app-accounttaccess" [ngStyle]="{height:clientHeight+'px',overflow:'auto'}">
+    <div class="tabs-ul ng-bottom">
+        <a [routerLink]="[ '/accountaccess/users' ]" routerLinkActive="active">用户</a>
+        <a [routerLink]="[ '/accountaccess/managers' ]" routerLinkActive="active" >经理</a>
+        <a [routerLink]="[ '/accountaccess/settings' ]" routerLinkActive="active" >安全</a>
+    </div>
+    <div class="ng-w90">
+        <router-outlet></router-outlet>
+    </div>
+   
+</div>

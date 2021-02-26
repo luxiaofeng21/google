@@ -12,42 +12,73 @@ export class OverviewComponent implements OnInit {
       name3:""
   }
   public expandKeys = ['100', '1001'];
-  public nodes = [
+  public treeList:any = [
     {
-      title: 'parent 1',
-      key: '100',
-      children: [
+      value: 1,
+      label: '点击次数',
+      isLeaf:true
+    },
+    {
+      value: 2,
+      label: '展示次数',
+      isLeaf:true
+    },
+    {
+      value: 3,
+      label: '点击率',
+      isLeaf:true
+    },
+    {
+      value: 4,
+      label: '平均每天点击费用',
+      isLeaf:true
+    },
+    {
+      value: 5,
+      label: '费用',
+      isLeaf:true
+    },
+    {
+      value: 6,
+      label: '转化次数',
+      children:[
         {
-          title: 'parent 1-0',
-          key: '1001',
-          children: [
-            { title: 'leaf 1-0-0', key: '10010', isLeaf: true },
-            { title: 'leaf 1-0-1', key: '10011', isLeaf: true }
-          ]
+          label:"所有",
+          value:601,
+          isLeaf:true
         },
         {
-          title: 'parent 1-1',
-          key: '1002',
-          children: [{ title: 'leaf 1-1-0', key: '10020', isLeaf: true }]
+          label:"购买/销售",
+          value:602,
+          isLeaf:true
+        },
+        {
+          label:"注册",
+          value:603,
+          isLeaf:true
+        },{
+          label:"关键网页浏览",
+          value:62,
+          isLeaf:true
         }
       ]
-    }
+    },
   ];
   public tree=[
     {
-      value:"",
+      value:[1],
       num:"NT$0.0.0"
     },
     {
-      value:"",
+      value:[2],
       num:"0.00%"
     },
     {
-      value:"",
+      value:[3],
       num:"0.00"
     },
     {
-      value:"",
+      value:[4],
       num:"0.00"
     },
     

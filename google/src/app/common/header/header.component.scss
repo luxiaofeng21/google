@@ -1,4 +1,7 @@
 #google-header{
+    position: sticky;
+    top:0;
+    z-index: 11;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -8,6 +11,7 @@
     padding-right: 20px;
     transition: margin-top cubic-bezier(0.4,0,0.2,1) 218ms;
     .lf{
+        cursor: pointer;
         width: 50%;
         display: flex;
         .logo{
@@ -21,6 +25,9 @@
             span:last-child{
                 border-left: 1px solid #999;
             }
+        }
+        i{
+            margin: 0 5px;
         }
     }
     .rg{
@@ -41,6 +48,7 @@
         .head-tool>li{
             padding: 5px 10px;
             text-align: center;
+            cursor: pointer;
             i{
                 margin-bottom: 5px;
             }
@@ -56,7 +64,10 @@
             align-items: center;
             align-content: center;
             .img{
-                width: 30px;
+                padding: 0 2px;
+                line-height: 30px;
+                text-align: center;
+                min-width: 30px;
                 height: 30px;
                 border-radius: 50%;
                 background-color: #8D6E63;
@@ -67,6 +78,17 @@
     i{
         font-size: 20px;
         font-weight: bold;
-        margin: 0 5px 
+        color: #fff;
+        cursor: pointer;
+    }
+}
+
+.she-flex{
+    display: flex;
+    >span{
+        display: block;
+        width: 1px;
+        margin: 0 10px;
+        background-color: #eee;
     }
 }

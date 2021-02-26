@@ -1,0 +1,22 @@
+<nz-table #nzTable [nzData]="tableData" [nzPageSize]="10" >
+  <thead>
+    <tr>
+      <th>账单设置</th>
+      <th>付款设置</th>
+      <th>付款资料</th>
+      <th>付款资料ID</th>
+      <th>开始日期</th>
+      <th>结束日期</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of nzTable.data">
+      <td>{{i.name1}}</td>
+      <td>{{i.name2}}</td>
+      <td>{{i.name3}}</td>
+      <td>{{i.name4}}</td>
+      <td>{{i.name5}}</td>
+      <td>{{i.name6}}</td>
+    </tr>
+  </tbody>
+</nz-table>

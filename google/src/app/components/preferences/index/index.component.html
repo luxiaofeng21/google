@@ -1,0 +1,172 @@
+<div class="ng-bottom">
+    <div class="ng-title">您的偏好</div>
+    <p>
+        这些偏好设置仅适用于 a543787366@gmail.com 有权访问的 Google Ads 帐号。要更新帐号详细信息（例如您的密码）或要开启无障碍功能，请访问  <a href="">我的 Google 帐号</a> 。
+    </p>
+    <div class="ads-card">
+        <nz-collapse nzGhost>
+            <nz-collapse-panel nzHeader="显示语言格式" nzActive>
+                <form nz-form nzLayout="vertical">
+                    <nz-form-item>
+                    <nz-form-label [nzSpan]="6" nzFor="lang">
+                        显示语言：<i nz-popover  nzPopoverContent="显示语言设置决定着 Google Ads 界面会以何种语言显示。"  nz-icon nzType="question-circle" nzTheme="outline"></i>
+                    </nz-form-label>
+                    <nz-form-control [nzSpan]="14">
+                                <nz-select [(ngModel)]="info.lang" name="lang"  (ngModelChange)="getlang(info.lang)" >
+                                <nz-option
+                                    *ngFor="let item of langList"
+                                    [nzLabel]="item.label"
+                                    [nzValue]="item.value"
+                                    [nzDisabled]="item.disabled">
+                                </nz-option>
+                                </nz-select>
+                                
+                    </nz-form-control>
+                    </nz-form-item >
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="country">
+                            数字格式：<i nz-popover  nzPopoverContent="有时，您帐号中的数字、日期和时间所采用的格式可能不符合您所在国家/地区的标准。在这种情况下，您可以选择其他国家/地区以查看不同格式。             " nz-icon nzType="question-circle" nzTheme="outline"></i>
+                        </nz-form-label>
+                        <nz-form-control [nzSpan]="14">
+                                <nz-select [(ngModel)]="info.lang" name="country"  disabled >
+                                <nz-option
+                                    *ngFor="let item of country"
+                                    [nzLabel]="item.label"
+                                    [nzValue]="item.value"
+                                    [nzDisabled]="item.disabled">
+                                </nz-option>
+                                </nz-select>
+                                
+                        </nz-form-control>
+                    </nz-form-item >
+                </form>
+            <p style="margin:0;">
+                    显示语言和数字格式已根据您在 <a href="">我的 Google 帐号</a> 中设置的偏好预先填好。您在此处所做的任何更改只会影响到您的 Google Ads 帐号。
+            </p>
+            </nz-collapse-panel>
+        </nz-collapse>
+    </div>
+</div>
+<div class="ng-bottom">
+    <div class="ng-title">980-713-9776（此帐号）的偏好设置</div>
+    <p>这些偏好设置仅适用于有权访问此帐号的用户。    </p>
+    <div class="ads-card">
+        <nz-collapse nzGhost>
+            <nz-collapse-panel nzHeader="帐号名" >
+                <input nz-input [(ngModel)]="info.account" id="name" name="name" class="ng-bottom" placeholder="">
+                <div> 每个有权访问该帐号的人都会看到此名称。</div>
+            </nz-collapse-panel>
+            <nz-collapse-panel nzHeader="时区" >
+                <div class="ng-bottom">(GMT+08:00) 台北标准时间</div>
+                <div> 
+                    要使用其他时区来管理帐号，您必须 <a href="">创建一个新帐号</a> ，并在“结算设置”页面上选择要采用的时区。 <a href="">了解详情</a>
+                </div>
+            </nz-collapse-panel>
+            <nz-collapse-panel nzHeader="帐号状态" >
+                <div class="ng-bottom">您的帐号有效。</div>
+                <div> 
+                    如果您撤销帐号，您的广告将停止投放，您将在 60 天内收到最后一笔帐单
+                </div>
+            </nz-collapse-panel>
+        </nz-collapse>
+    </div>
+</div>
+<div class="ng-bottom">
+        <div class="ng-title">数据保护联系人</div>
+        <p>请提供 <a href="">Google 广告数据处理条款</a> 和《欧盟一般数据保护条例》相关事宜负责人的联系信息。这些联系信息如有变化，请确保及时更新。        </p>
+        <div class="ads-card">
+            <nz-collapse nzGhost>
+                <nz-collapse-panel nzHeader="联系信息" >
+                    <form nz-form nzLayout="vertical">
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="lang">主要联系人:</nz-form-label>
+                            <nz-form-control [nzSpan]="14">
+                                        <input class="ng-bottom" nz-input [(ngModel)]="user.name" id="name" name="name" placeholder="姓名（必填）">
+                                        <input class="ng-bottom" nz-input [(ngModel)]="user.email" id="email" name="email" placeholder="电子邮件地址（必填）">
+                                        <div class="ng-flex ng-bottom">
+                                                <nz-select [(ngModel)]="user.country" name="coutry" nzPlaceHolder="国家" [ngStyle]="{'marginRight': '10px'}">
+                                                <nz-option
+                                                    *ngFor="let item of country"
+                                                    [nzLabel]="item.label"
+                                                    [nzValue]="item.value"
+                                                    [nzDisabled]="item.disabled">
+                                                </nz-option>
+                                                </nz-select>
+                                                <input nz-input [(ngModel)]="user.tell" id="tell" name="tell" placeholder="电话号码">
+                                        </div>
+                                        <input nz-input [(ngModel)]="user.address" id="address" name="address" placeholder="地址">
+                            </nz-form-control>
+                        </nz-form-item >
+                    </form>
+                    <div class="ng-margin">
+                        <h3>数据保护官</h3>
+                        <label nz-checkbox [(ngModel)]="user.copy" name="">与主要联系人相同</label>
+                    </div>
+                    <form nz-form nzLayout="vertical">
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="lang">主要联系人:</nz-form-label>
+                            <nz-form-control [nzSpan]="14">
+                                        <input class="ng-bottom" nz-input [(ngModel)]="user.name" id="name" name="name" placeholder="姓名（必填）">
+                                        <input class="ng-bottom" nz-input [(ngModel)]="user.email" id="email" name="email" placeholder="电子邮件地址（必填）">
+                                        <div class="ng-flex ng-bottom">
+                                                <nz-select [(ngModel)]="user.country" name="coutry" nzPlaceHolder="国家" [ngStyle]="{'marginRight': '10px'}">
+                                                <nz-option
+                                                    *ngFor="let item of country"
+                                                    [nzLabel]="item.label"
+                                                    [nzValue]="item.value"
+                                                    [nzDisabled]="item.disabled">
+                                                </nz-option>
+                                                </nz-select>
+                                                <input nz-input [(ngModel)]="user.tell" id="tell" name="tell" placeholder="电话号码">
+                                        </div>
+                                        <input nz-input [(ngModel)]="user.address" id="address" name="address" placeholder="地址">
+                            </nz-form-control>
+                        </nz-form-item >
+                    </form>
+                    <div class="ng-margin">
+                        <h3>欧盟代表</h3>
+                    </div>
+                    <form nz-form nzLayout="vertical">
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="lang">主要联系人:</nz-form-label>
+                            <nz-form-control [nzSpan]="14">
+                                        <input class="ng-bottom" nz-input [(ngModel)]="user.name" id="name" name="name" placeholder="姓名（必填）">
+                                        <input class="ng-bottom" nz-input [(ngModel)]="user.email" id="email" name="email" placeholder="电子邮件地址（必填）">
+                                        <div class="ng-flex ng-bottom">
+                                                <nz-select [(ngModel)]="user.country" name="coutry" nzPlaceHolder="国家" [ngStyle]="{'marginRight': '10px'}">
+                                                <nz-option
+                                                    *ngFor="let item of country"
+                                                    [nzLabel]="item.label"
+                                                    [nzValue]="item.value"
+                                                    [nzDisabled]="item.disabled">
+                                                </nz-option>
+                                                </nz-select>
+                                                <input nz-input [(ngModel)]="user.tell" id="tell" name="tell" placeholder="电话号码">
+                                        </div>
+                                        <input nz-input [(ngModel)]="user.address" id="address" name="address" placeholder="地址">
+                            </nz-form-control>
+                        </nz-form-item >
+                    </form>
+                </nz-collapse-panel>
+            </nz-collapse>
+        </div>
+</div>
+<div class="ng-bottom">
+    <div class="ng-title ng-bottom">数据保护联系人</div>
+    <div class="ads-card">
+        <form nz-form>
+            <nz-form-item>
+              <nz-form-label [nzSpan]="6" nzFor="email">Google 计划广告客户条款</nz-form-label>
+              <nz-form-control [nzSpan]="14">
+                状态：已接受（2021-2-1 10:24:36 Asia/Taipei）     <a href=""> 阅读可打印的文档</a>
+              </nz-form-control>
+            </nz-form-item >
+            <nz-form-item>
+              <nz-form-label [nzSpan]="6" nzFor="email">Google Ads 政策暂停流程</nz-form-label>
+              <nz-form-control [nzSpan]="14">
+                  <a href="">  阅读暂停流程</a>
+              </nz-form-control>
+            </nz-form-item >
+          </form>
+    </div>
+</div>

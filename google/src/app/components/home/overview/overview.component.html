@@ -44,22 +44,13 @@
                 </div>
             </div>
             <div class="ads-card ng-margin">
-                <!-- <ul class="tool-ul">
+                <ul class="tool-ul">
                         <li *ngFor="let item of tree">
-                            <nz-tree-select
-                            
-                                [nzExpandedKeys]="expandKeys"
-                                [nzNodes]="nodes"
-                                nzShowSearch
-                                nzPlaceHolder="Please select"
-                                [(ngModel)]="item.value"
-                                (ngModelChange)="treeChange($event)"
-                            >
-                            </nz-tree-select>
+                            <nz-cascader class="ant-white" [nzAllowClear]="false" [nzOptions]="treeList"  [(ngModel)]="item.value" (ngModelChange)="onChange($event)"></nz-cascader>
                             <div class="num">{{item.num}}</div>
                         </li>
-                        
-                </ul> -->
+                          
+                </ul>
                 <div echarts [options]="chartOption" class="chart"></div>
             </div>
             <ul class="gong-ul">

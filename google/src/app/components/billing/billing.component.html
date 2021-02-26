@@ -1,0 +1,21 @@
+<div class="ng-layout">
+    <div class="lf">
+        <ul nz-menu nzMode="inline" [style]="{height:clientHeight+'px',overflowY:'auto',overflowX:'hidden'}">
+            <label *ngFor="let item of menu" >
+                <li *ngIf="item.children" [nz-submenu]="false"   [nzTitle]="item.title" [nzIcon]="item.icon?item.icon:''"  [nzOpen]="item.open">
+                    <ul>
+                        <a  *ngFor="let v of item.children" nz-menu-item  [routerLink]="[ v.path ]" routerLinkActive="ant-menu-item-selected" >{{v.title}}</a> 
+                    </ul>
+                </li>
+                <a *ngIf="!item.children" nz-menu-item (click)="geturl(item.title)"   [routerLink]="[ item.path ]" routerLinkActive="ant-menu-item-selected" >{{item.title}}</a> 
+                
+            </label>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="ng-head flex">
+            <span class="ng-title">{{title}}</span>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

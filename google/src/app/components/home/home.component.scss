@@ -1,4 +1,4 @@
-.aside-ul>li{
+.aside-ul>a{
     padding: 15px 15px;
     display: flex;
     align-items: center;
@@ -24,6 +24,9 @@
         right: -4px;
         top: -4px;
     }
+}
+.aside-ul>a.active{
+    background-color: #5F6368;
 }
 .aside-ul>li:hover{
     background-color: #5F6368;
@@ -52,7 +55,7 @@ nz-content{
         color: #000;
     }
     .ant-menu-item-selected{
-        color: #1890ff;
+        color: #185abc;
     }
     .rg{
         flex: 1;

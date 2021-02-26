@@ -1,0 +1,38 @@
+
+<div class="flex ng-filter">
+    <button  nz-button nzType="primary" nzSize="large" nzShape="circle"><i nz-icon nzType="plus" nzTheme="outline"></i></button>
+    <div class="icon-text" (click)="getdown()"  >
+        <i nz-icon nzType="fullscreen" nzTheme="outline"></i>
+        <div>展开</div>
+    </div>
+</div>
+<hr>
+<nz-table #nzTable [nzData]="tableData" [nzPageSize]="10" nzSize="middle" nzBordered>
+    <thead>
+      <tr>
+        <th rowspan="2">促销活动</th>
+        <th rowspan="2">已放金额</th>
+        <th rowspan="2">状态</th>
+        <th rowspan="2">兑换日期</th>
+        <th colspan="3">失效日期</th>
+        <th rowspan="2">优惠券支出金额</th>
+      </tr>
+      <tr>
+        <th rowspan="2" >Age</th>
+        <th rowspan="2">Company Address</th>
+        <th rowspan="2">Company Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of nzTable.data">
+        <td>{{i.name1}}</td>
+        <td>{{i.name2}}</td>
+        <td>{{i.name3}}</td>
+        <td>{{i.name4}}</td>
+        <td>{{i.name5}}</td>
+        <td>{{i.name6}}</td>
+        <td>{{i.name7}}</td>
+        <td>{{i.name8}}</td>
+      </tr>
+    </tbody>
+  </nz-table>

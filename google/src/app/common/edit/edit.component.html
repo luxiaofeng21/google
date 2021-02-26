@@ -1,0 +1,15 @@
+<div class="ng-edit" [class]="{hover:!show}" (click)="show=true">
+    <div class="title">{{label}}</div>
+    <div class="content">
+            <div class="text" *ngIf="!show">{{title}}</div>
+            <div class="down" *ngIf="show">
+                    <ng-content  select=".content"></ng-content>
+                    <div style="height: 60px;"></div>
+                    <div class="edit-footer">
+                        <button nz-button nzType="info" (click)="close($event)">取消</button>
+                        <button nz-button nzType="primary">保存</button>
+                    </div>
+            </div>
+    </div>
+    <div class="rg"> <i nz-icon nzType="down" nzTheme="outline"></i> </div>
+</div>

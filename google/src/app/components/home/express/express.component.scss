@@ -1,0 +1,73 @@
+.express-title{
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+    span{
+        margin-left: 10px;
+    }
+}
+.price{
+    font-family: Roboto,Helvetica,sans-serif;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 500;
+    letter-spacing: .15px;
+    color: #1a73e8;
+    cursor: pointer;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+.gong-ul{
+    display: flex;
+    li{
+        i{
+            font-size: 25px;
+        }
+        .num{
+            font-size: 25px;
+        }
+        .text{
+            font-size: 12px;
+            color: #666;
+        }
+        padding: 20px;
+        border-right: 1px solid #eee;
+        width: 25%;
+        cursor:pointer;
+    }
+    li:last-child{
+        border-right: 0;
+    }
+}
+
+.iphone{
+    position: relative;
+    border: 12px solid #eee;
+    border-top-width: 20px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    padding: 10px;
+    width: 300px;
+    margin: 0 auto;
+    border-bottom-width: 0px;
+    padding-bottom: 0;
+    a{
+        display: block;
+    }
+    .iphone-contnet{
+        border: 1px solid #ddd;
+        padding: 10px;
+        height: 100%;
+        border-bottom: 0;
+        .iphone-title{
+            font-size: 12px;
+            color: #666;
+        }
+    }
+}
+
+
+.yusuan span{
+    font-size: 25px;
+}

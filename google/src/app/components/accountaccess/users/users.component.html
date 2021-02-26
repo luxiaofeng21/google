@@ -1,0 +1,146 @@
+<div class="ng-margin">
+    此表格显示的是有权访问该帐号的用户。要管理负责结算的用户，请访问“结算与付款”设置的 <a href="">“付款联系人”部分</a> 。
+</div>
+<div class="flex ng-filter">
+    <div class="lf">
+        <button (click)="isVisible=true"  nz-button nzType="primary" nzSize="large" nzShape="circle"><i nz-icon nzType="plus" nzTheme="outline"></i></button>
+        <button (click)="isVisible3=true"  nz-button nzType="primary" nzBlock><i nz-icon nzType="pushpin" nzTheme="fill"></i> 添加过滤条件</button>
+        <div class="button-ul">
+            <button nz-button nzType="primary" nzSize="default" nzShape="round" *ngFor="let item of filters">{{item.title}} {{item.type}} {{item.value}} {{item.children}}</button>
+        </div>
+    </div>
+    <div class="rg">
+        
+        <div class="icon-text" nz-dropdown >
+            <i nz-icon nzType="align-right" nzTheme="outline"></i>
+            <div>细分</div>
+        </div>
+        <div class="icon-text" (click)="getdown()"  *ngIf="!fullscreen">
+            <i nz-icon nzType="fullscreen" nzTheme="outline"></i>
+            <div>展开</div>
+        </div>
+        <div class="icon-text" (click)="getdown()" *ngIf="fullscreen">
+            <i nz-icon nzType="fullscreen-exit" nzTheme="outline"></i>
+            <div>收起</div>
+        </div>
+    </div>
+</div>
+<nz-table #basicTable
+[nzData]="listOfData" 
+[nzBordered]="true"
+[nzScroll]="{ x: '1000px' }" 
+>
+    <thead>
+    <tr>
+        <th nzWidth="150px" [nzLeft]="index<2" *ngFor="let column of listOfColumn;let index=index"  [nzSortFn]="column.compare"  >{{ column.title }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+        <td >
+            
+            <span (click)="keyInfo=data"  class="edit-hover" nz-popover  nzPopoverTrigger="click"  [nzPopoverContent]="name1" nzPopoverTitle="用户显示名称">
+                <div class="ng-block"><strong>{{data.name}} - 您本人   </strong></div>
+                a543787366@gmail.com    
+                <i nz-icon nzType="edit" nzTheme="fill"></i>
+            </span>    
+            <ng-template #name1>
+                <input nz-input placeholder="Basic usage" [(ngModel)]="keyInfo.name" class="ng-bottom" />
+            </ng-template>
+        </td>
+        <td >{{ data.name2 }}</td>
+        <td >{{ data.name3 }}</td>
+        <td >{{ data.name4 }}</td>
+        <td >{{ data.name5 }}</td>
+        <td >{{ data.name6 }}</td>
+        <td>
+            <a href="javascript:;" (click)="isVisible2=true">移除权限</a>
+        </td>
+    </tr>
+    </tbody>
+</nz-table>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="邀请其他人访问“980-713-9776”" (nzOnCancel)="isVisible=false"   (nzOnOk)="getkey()" nzWidth="800px">
+        <div class="ng-bottom">受邀者接受您的电子邮件邀请后，将有权访问“980-713-9776”。如果他们没有 Google 帐号，则需要创建一个。 <a href="">了解详情</a>        </div>
+        <form nz-form nzName="nzform" >
+            <nz-form-item>
+              <nz-form-label [nzSpan]="6" nzFor="email">电子邮件</nz-form-label>
+              <nz-form-control [nzSpan]="14">
+                <input nz-input [(ngModel)]="invito.email" name="familyMemName" ngModel
+                #familyMemName="ngModel">
+              </nz-form-control>
+            </nz-form-item >
+            <nz-form-item>
+              <nz-form-label [nzSpan]="6" nzFor="type">选择帐号访问权限级别</nz-form-label>
+              <nz-form-control [nzSpan]="14">
+                <nz-radio-group [(ngModel)]="invito.type" name="radiogroup">
+                    <label nz-radio nzValue="1">仅可接收电子邮件</label>
+                    <label nz-radio nzValue="2">结算</label>
+                    <label nz-radio nzValue="3">只读</label>
+                    <label nz-radio nzValue="4">标准</label>
+                    <label nz-radio nzValue="5">管理员</label>
+                </nz-radio-group>
+              </nz-form-control>
+            </nz-form-item >
+            <nz-form-item>
+                <nz-form-label [nzSpan]="6" nzFor="checked">为该用户订阅以下电子邮件</nz-form-label>
+                <nz-form-control [nzSpan]="14">
+                    <nz-checkbox-group name="mchecked" [(ngModel)]="checkOptionsOne" (ngModelChange)="log(checkOptionsOne)"></nz-checkbox-group>
+                </nz-form-control>
+              </nz-form-item >
+          </form>
+</nz-modal> 
+<nz-modal [(nzVisible)]="isVisible3"(nzOnCancel)="isVisible3=false"  [nzClosable]="false"  nzWidth="500px">
+    <nz-input-group nzSize="large" [nzSuffix]="suffixIcon2" nzSize="default">
+       <input placeholder="按名称或广告系列 ID 搜索" nz-input [(ngModel)]="filter.name4"  />
+     </nz-input-group>
+     <ng-template #suffixIcon2>
+       <i nz-icon nzType="search"></i>
+     </ng-template>
+     <ul nz-menu nzMode="inline" style="height: 450px;overflow-y: auto;overflow-x: hidden;">
+           <li nz-menu-item *ngFor="let v of panels" (click)="getfilter(v)">{{v.name}}</li>
+     </ul>
+</nz-modal> 
+<nz-modal [(nzVisible)]="isVisible4" (nzOnCancel)="isVisible4=false"  [nzTitle]="info.title" nzWidth="500px" (nzOnOk)="addfilter()" >
+       <div *ngIf="info.children.length>0">
+           <label nz-checkbox [(ngModel)]="v.checked" *ngFor="let v of info.children">{{v.title}}</label>
+       </div>
+       <div *ngIf="info.children.length<=0" class="ng-flex">
+           <nz-select [(ngModel)]="info.type" name="mselect" style="width: 100px;margin-right: 10px;">
+               <nz-option
+                   nzLabel="包含"
+                   nzValue="包含">
+               </nz-option>
+               <nz-option
+                   nzLabel="不包含"
+                   nzValue="不包含">
+               </nz-option>
+               <nz-option
+                   nzLabel="包含（区分大小写）"
+                   nzValue="包含（区分大小写）">
+               </nz-option>
+               <nz-option
+                   nzLabel="不包含（区分大小写）"
+                   nzValue="不包含（区分大小写）">
+               </nz-option>
+               <nz-option
+                   nzLabel="等于"
+                   nzValue="等于">
+               </nz-option>
+               <nz-option
+                   nzLabel="开头为"
+                   nzValue="开头为">
+               </nz-option>
+           </nz-select>
+           <input class="ng-inline"  placeholder="值" [(ngModel)]="info.value" nz-input />
+       </div>
+</nz-modal> 
+<nz-modal [(nzVisible)]="isVisible2" nzTitle="是否撤销枫果果的访问权限？" (nzOnCancel)="isVisible2=false" >
+    <ng-container *nzModalContent>
+        <p>
+            由于此 Google Ads 帐号无其他管理员用户，
+            <strong>因此从帐号中移除此用户将导致此帐号关闭</strong>
+            。此帐号关闭后，您的广告将停止展示，系统将开始处理任何未结款项。    
+        </p>
+        <p> <strong>您将无法撤消此操作。</strong> </p>
+    </ng-container>
+  </nz-modal>
